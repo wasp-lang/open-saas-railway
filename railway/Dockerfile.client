@@ -1,0 +1,25 @@
+FROM --platform=linux/amd64 node:22-slim AS builder
+
+RUN apt update && apt install -y curl
+
+RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.17.1
+
+ENV PATH="$PATH:/root/.local/bin"
+
+WORKDIR /app
+
+COPY ./app /app
+
+RUN wasp build
+
+ARG REACT_APP_API_URL
+
+RUN npm install && cd .wasp/build/web-app && npm install && REACT_APP_API_URL=$REACT_APP_API_URL npm run build
+
+FROM caddy
+
+COPY --from=builder /app/.wasp/build/web-app/build /usr/share/caddy
+
+COPY ./railway/Caddyfile /etc/caddy/Caddyfile
+
+EXPOSE 8080
