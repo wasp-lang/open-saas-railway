@@ -1,0 +1,23 @@
+FROM --platform=linux/amd64 node:22-slim
+
+RUN apt update && apt install -y curl
+
+RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.17.1
+
+ENV PATH="$PATH:/root/.local/bin"
+
+WORKDIR /app
+
+COPY ./app /app
+
+RUN wasp build
+
+# Install npm packages, resulting in node_modules/.
+RUN npm install && cd .wasp/build/server && npm install
+RUN cd .wasp/build/server && npx prisma generate --schema='../db/schema.prisma'
+# Building the server should come after Prisma generation.
+RUN cd .wasp/build/server && npm run bundle
+
+WORKDIR /app/.wasp/build/server
+
+ENTRYPOINT ["npm", "run", "start-production"]
