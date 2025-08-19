@@ -14,7 +14,7 @@ This template is:
 > This is a special version of Open SaaS designed for instant Railway deployments. <br/>
 > **Do not** use Wasp's built-in deploy commands as it will interfere with your Railway setup.
 
-## Using this starter with Railway
+## Using this Open SaaS x Railway template
 
 If you haven't already deployed Open SaaS via the [Railway](https://railway.com/deploy) template directory, you can do so now:
 
