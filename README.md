@@ -1,4 +1,4 @@
-## Welcome to your new Open SaaS App! 🎉
+## Open SaaS x Railway Template 🐝 🛤
 
 https://github.com/user-attachments/assets/3856276b-23e9-455e-a564-b5f26f4f0e98
 
