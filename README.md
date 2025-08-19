@@ -1,4 +1,4 @@
-## Welcome to your new SaaS App! 🎉
+## Welcome to your new Open SaaS App! 🎉
 
 https://github.com/user-attachments/assets/3856276b-23e9-455e-a564-b5f26f4f0e98
 
@@ -6,19 +6,72 @@ You've decided to build a SaaS app with the Open SaaS x Railway template. Great 
 
 This template is:
 
-1. fully open-source
-2. completely free to use and distribute
-3. comes with a ton of features out of the box!
-4. focused on free, open-source services, where possible
-5. is **pre-configured for instant Railway deployments**
+1. fully open-source & free to use
+2. comes with a ton of features out of the box
+3. is **pre-configured for instant Railway deployments**
 
-> [!IMPORTANT]  
-> This is a special version of Open SaaS, pre-configured for instant Railway deployments. 
+> [!WARNING]  
+> This is a special version of Open SaaS designed for instant Railway deployments. <br/>
+> **Do not** use Wasp's built-in deploy commands as it will interfere with your Railway setup.
+
+## Using this starter with Railway
+
+If you haven't already deployed Open SaaS via the [Railway](https://railway.com/deploy) template directory, you can do so now:
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/open-saas?referralCode=uA-ZC_)
+
+### Initial Deployment
+
+- Click `Deploy Now`.
+- Click `Configure` on the Server service.
+
+<img width="50%" alt="Screenshot 2025-08-19 at 14 08 10" src="https://github.com/user-attachments/assets/944c3211-26bf-4e0d-bc6e-6ba78e30b34d" />
+
+- Fill in the server-side `JWT_SECRET` with a string of 32 characters.
+- Click `Deploy`
+- You'll see the Database, Server, and Client services initialize.
+
+### Getting your copy of the template ("ejecting")
+
+<img width="50%" alt="Screenshot 2025-08-19 at 14 13 31" src="https://github.com/user-attachments/assets/6b32c6e7-e72f-46f2-865a-6e54b4c3181d" />
+
+- Click on either the `Client` or `Server` service to access their configuration.
+- Click on the `Settings` tab. 
+
+<img width="50%" alt="Screenshot 2025-08-19 at 14 16 17" src="https://github.com/user-attachments/assets/4970c08a-2277-40fa-ac10-fd1c666399ed" />
+
+- Under the `Upstream Repo` heading, click the `Eject` button. 
+
+<img width="50%" alt="Screenshot 2025-08-19 at 14 26 50" src="https://github.com/user-attachments/assets/c6b2c467-ff10-466d-aba1-e0a5df004eb4" />
+
+- Select your GitHub account and click `Eject Service` to create a new repo in your account.
+- Go to your GitHub repositories, e.g.: `https://github.com/<your-user-name>/open-saas-railway` 
+- Clone this repo to your local machine, e.g.: `git clone https://github.com/<your-user-name>/open-saas-railway.git`
+
+Now you can start building your SaaS app locally. When you push a new commit to `main`, Railway will automatically deploy your changes! 🚀
+
+### Local Development
+
+1️⃣ Install the Wasp CLI:
+```bash
+curl -sSL https://get.wasp.sh/installer.sh | sh
+```
+Read the [Installation Instructions](https://docs.opensaas.sh/start/getting-started/#install-wasp) for more details (prerequisites, installing on Windows).
+
+2️⃣ Start the app by reading the [Getting Started Docs](https://docs.opensaas.sh/start/getting-started/#start-your-db).
+
+3️⃣ Although the app will run, you'll need to set up the integrations to get all its functionality. The [Open SaaS Docs](https://docs.opensaas.sh) contain detailed guides on setting up:
+- Auth,
+- Payments,
+- Analytics,
+- Email Sending,
+- AI-assisted coding,
+- and more. 
+
+> [!WARNING]  
+> Remember that this version of Open SaaS is pre-configured for instant Railway deployments. 
 > Because of this, the deployment features via the Wasp CLI **should not** be used.
-> Be sure to follow the [Using this starter with Railway](#using-this-starter-with-railway) section below to learn more.
-
-🧑‍💻 Check it out in action here: [OpenSaaS.sh](https://opensaas.sh)  
-📚 Check out the Docs here: [Open SaaS Docs](https://docs.opensaas.sh)
+> Just simply push to `main` on your instance's GitHub repo and Railway will automatically deploy your changes! 
 
 ## What's inside?
 
@@ -55,49 +108,6 @@ Because we're using Wasp as the full-stack framework, we can leverage a lot of i
 
 You also get access to Wasp's diverse, helpful community if you get stuck or need help.
 - 🤝 [Wasp Discord](https://discord.gg/aCamt5wCpS)
-
-## Using this starter with Railway
-
-### Initial Deployment
-
-This template was built for the [Railway](https://railway.com) template marketplace. Chances are, you've already deployed an instance to your Railway account.
-
-If you haven't, you can do so by clicking the button below:
-
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/open-saas?referralCode=uA-ZC_)
-
-`TODO: add configure pic`
-
-- Fill in the server-side `JWT_SECRET` with a string of 32 characters. 
-
-`TODO: add initial deploy pic`
-
-- Click `Deploy`
-- You'll see the Database, Server, and Client services initialize.
-- Click on either the `Client` or `Server` service to access its configuration
-- To get a copy of this deployed template in your GitHub repositories, click on `Settings`. 
-
-`TODO: add eject pic`
-
-- Under the `Upstream Repo` section, click the `Eject` button. 
-
-`TODO: org github select pic`
-
-- Select your github account and click `Eject Service` to create a new repo in your account.
-- Clone this repo to your local machine. 
-
-Now you can start building your SaaS app locally. When you push a new commit to `main`, Railway will automatically deploy your changes! 🚀
-
-### Local Development
-
-For local development, you'll need to install the Wasp CLI. Follow the [Open SaaS -- Getting Started Docs](https://docs.opensaas.sh/start/getting-started/) for detailed instructions.
-
-The [Open SaaS Docs](https://docs.opensaas.sh) also have detailed guides on setting up integrations like Payments, Auth, Analytics, Email Sending, AI-assisted coding, and more.
-
-> [!WARNING]  
-> Remember that this version of Open SaaS is pre-configured for instant Railway deployments. 
-> Because of this, the deployment features via the Wasp CLI **should not** be used.
-> Just simply push to `main` on your instance's GitHub repo and Railway will automatically deploy your changes! 
 
 ## Getting Help & Providing Feedback
 
