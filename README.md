@@ -23,13 +23,8 @@ If you haven't already deployed Open SaaS via the [Railway](https://railway.com/
 ### Initial Deployment
 
 - Click `Deploy Now`.
-- Click `Configure` on the Server service.
-
-<img width="50%" alt="Screenshot 2025-08-19 at 14 08 10" src="https://github.com/user-attachments/assets/944c3211-26bf-4e0d-bc6e-6ba78e30b34d" />
-
-- Fill in the server-side `JWT_SECRET` with a string of 32 characters.
-- Click `Deploy`
-- You'll see the Database, Server, and Client services initialize.
+- All services are pre-configured for you.
+- You'll see the `Database`, `Server`, and `Client` services initialize.
 
 ### Getting your copy of the template ("ejecting")
 
