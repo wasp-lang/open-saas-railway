@@ -14,14 +14,6 @@ export default function Login() {
         </WaspRouterLink>
         .
       </span>
-      <br />
-      <span className='text-sm font-medium text-gray-900'>
-        Forgot your password?{' '}
-        <WaspRouterLink to={routes.RequestPasswordResetRoute.to} className='underline'>
-          reset it
-        </WaspRouterLink>
-        .
-      </span>
     </AuthPageLayout>
   );
 }
