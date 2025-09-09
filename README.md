@@ -104,8 +104,73 @@ Because we're using Wasp as the full-stack framework, we can leverage a lot of i
 You also get access to Wasp's diverse, helpful community if you get stuck or need help.
 - 🤝 [Wasp Discord](https://discord.gg/aCamt5wCpS)
 
+## Quick Start Guide
+
+<details>
+<summary>🚀 Deployment & Setup Steps</summary>
+
+### 1. Deploy to Railway
+1. Click the "Deploy on Railway" button above
+2. Wait for all services (`Database`, `Server`, `Client`) to initialize
+3. Your app will be live in minutes!
+
+### 2. Get Your Code ("Eject")
+1. Click on either the `Client` or `Server` service
+2. Go to `Settings` → `Upstream Repo` → `Eject`
+3. Select your GitHub account to create your own copy
+
+### 3. Local Development
+```bash
+# Install Wasp CLI
+curl -sSL https://get.wasp.sh/installer.sh | sh
+
+# Clone your ejected repo
+git clone https://github.com/<your-username>/open-saas-railway.git
+
+# Start development
+cd open-saas-railway/app
+wasp start db
+wasp start
+```
+
+</details>
+
+<details>
+<summary>🔧 Configuration & Integrations</summary>
+
+Once your app is running, you'll want to set up these integrations for full functionality:
+
+- **Authentication**: Email verification, social login (Google, GitHub)
+- **Payments**: Stripe or Lemon Squeezy integration
+- **Analytics**: Plausible or Google Analytics
+- **Email**: SendGrid, MailGun, or SMTP configuration
+- **File Storage**: AWS S3 for file uploads
+- **AI Features**: OpenAI API integration
+
+📚 See the [Open SaaS Documentation](https://docs.opensaas.sh) for detailed setup guides.
+
+</details>
+
+<details>
+<summary>❓ Common Questions</summary>
+
+**Q: Can I use Wasp's deploy commands with this template?**
+A: No, this version is pre-configured for Railway. Just push to `main` and Railway deploys automatically!
+
+**Q: Is this template really free?**
+A: Yes! It's fully open-source. You only pay for the services you use (Railway hosting, Stripe fees, etc.).
+
+**Q: What if I need help customizing the template?**
+A: Join our [Discord community](https://discord.gg/aCamt5wCpS) - we're always happy to help!
+
+</details>
+
+---
+
 ## Getting Help & Providing Feedback
 
 There are two ways to get help or provide feedback (and we try to always respond quickly!):
 1. [Open an issue](https://github.com/wasp-lang/open-saas/issues)
 2. [Wasp Discord](https://discord.gg/aCamt5wCpS) -- please direct questions to the #🙋questions forum channel
+
+💡 **New to markdown dropdowns?** Check out our [Markdown Dropdown Guide](./MARKDOWN_DROPDOWN_GUIDE.md) for more examples!
