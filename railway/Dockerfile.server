@@ -4,6 +4,10 @@ RUN apt update && apt install -y curl
 
 ENV WASP_TELEMETRY_CONTEXT="railway-open-saas"
 
+# This will set the public railway domain for the client as the user id
+ARG WASP_TELEMETRY_USER_ID
+ENV WASP_TELEMETRY_USER_ID=$WASP_TELEMETRY_USER_ID
+
 RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.17.1
 
 ENV PATH="$PATH:/root/.local/bin"
