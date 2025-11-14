@@ -211,6 +211,7 @@ function NewTaskForm({ handleCreateTask }: { handleCreateTask: typeof createTask
         variant='default'
         size='default'
         className='w-full'
+        data-testid='generate-schedule-button'
       >
         {isPlanGenerating ? (
           <>
@@ -310,7 +311,7 @@ function Todo({ id, isDone, description, time }: TodoProps) {
 
 function Schedule({ schedule }: { schedule: GeneratedSchedule }) {
   return (
-    <div className='flex flex-col gap-6 py-6'>
+    <div className='flex flex-col gap-6 py-6' data-testid='schedule'>
       <div className='space-y-4'>
         {!!schedule.tasks ? (
           schedule.tasks
@@ -335,7 +336,7 @@ function Schedule({ schedule }: { schedule: GeneratedSchedule }) {
 
 function TaskCard({ task, taskItems }: { task: ScheduleTask; taskItems: TaskItem[] }) {
   const taskPriorityToColorMap: Record<TaskPriority, string> = {
-    high: 'bg-destructive/20 border-destructive/40 text-red-500',
+    high: 'bg-destructive/10 border-destructive/20 text-red-500',
     medium: 'bg-warning/10 border-warning/20 text-warning',
     low: 'bg-success/10 border-success/20 text-success',
   };
