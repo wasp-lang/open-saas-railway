@@ -18,7 +18,7 @@ Then recreate the template folders from the latest template version:
 
 ### Healthcheck
 
-Make sure the `/healthcheck` endpoint is included:
+Include the `/healthcheck` endpoint:
 
 ```ts
 api healthCheck {
@@ -30,7 +30,7 @@ api healthCheck {
 
 ### Email sender
 
-Make sure that the email sender is set to `Mailgun` and not `Dummy`.
+Change the email sender to `Mailgun`.
 
 ## Test the app is okay
 
