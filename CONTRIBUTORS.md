@@ -40,8 +40,8 @@ Try running the app locally with:
 cd app/
 cp .env.server.example .env.server
 wasp start db
-# Delete the migrations dir after this
-wasp db migrate-dev
+# Commit the migratons dir
+wasp db migrate-dev --name "init"
 wasp start
 ```
 
