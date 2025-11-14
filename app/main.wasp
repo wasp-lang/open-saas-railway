@@ -1,6 +1,6 @@
 app OpenSaaS {
   wasp: {
-    version: "^0.17.0"
+    version: "^0.18.0"
   },
 
   title: "My Open SaaS App",
@@ -39,7 +39,7 @@ app OpenSaaS {
       email: {
         fromField: {
           name: "Open SaaS App",
-          email: "me@mg.wasp.sh"
+          email: "me@example.com"
         },
         emailVerification: {
           clientRoute: EmailVerificationRoute,
@@ -91,7 +91,7 @@ app OpenSaaS {
     defaultFrom: {
       name: "Open SaaS App",
       // When using a real provider, e.g. SendGrid, you must use the same email address that you configured your account to send out emails with!
-      email: "me@mg.wasp.sh"
+      email: "me@example.com"
     },
   },
 }
@@ -301,7 +301,7 @@ page NotFoundPage {
 route AdminMessagesRoute { path: "/admin/messages", to: AdminMessagesPage }
 page AdminMessagesPage {
   authRequired: true,
-  component: import AdminMessages from "@src/messages/MessagesPage"
+  component: import AdminMessages from "@src/admin/dashboards/messages/MessagesPage"
 }
 //#endregion
 
