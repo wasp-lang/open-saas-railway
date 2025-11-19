@@ -11,7 +11,7 @@ rm -rf app e2e-tests blog
 Then recreate the template folders from the latest template version:
 
 ```shell
-  wasp new saas-app -t saas && cp -r saas-app/{app,e2e-tests,blog} . && rm -rf saas-app
+  wasp new saas-app -t saas && cp -r saas-app/{app,e2e-tests,blog} . cp saas-app/.gitignore . && rm -rf saas-app
 ```
 
 ## Changes on top of template
