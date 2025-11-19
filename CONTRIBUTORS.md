@@ -28,9 +28,29 @@ api healthCheck {
 }
 ```
 
+And create the `healthCheck` function in `app/src/server/healthCheck.ts`:
+
+```ts
+import { type HealthCheck } from "wasp/server/api";
+
+export const healthCheck: HealthCheck = (_req, res, _context) => {
+  res.status(200).send("Server is healthy 😎");
+};
+```
+
 ### Email sender
 
 Change the email sender to `Mailgun`.
+
+### Re-add Mailgun example env vars
+
+Make sure `.env.server.example` has the Mailgun env vars:
+
+```env
+# see our guide for setting up mailgun emailing: https://wasp.sh/docs/advanced/email#using-the-mailgun-provider
+MAILGUN_API_KEY=your-mailgun-key
+MAILGUN_DOMAIN=your-mailgun-domain
+```
 
 ## Test the app is okay
 

@@ -1,6 +1,6 @@
 app OpenSaaS {
   wasp: {
-    version: "^0.18.0"
+    version: "^0.19.0"
   },
 
   title: "My Open SaaS App",
@@ -11,7 +11,7 @@ app OpenSaaS {
     "<meta name='description' content='Your apps main description and features.' />",
     "<meta name='author' content='Your (App) Name' />",
     "<meta name='keywords' content='saas, solution, product, app, service' />",
-    
+
     "<meta property='og:type' content='website' />",
     "<meta property='og:title' content='Your Open SaaS App' />",
     "<meta property='og:site_name' content='Your Open SaaS App' />",
@@ -190,10 +190,10 @@ page PricingPage {
   component: import PricingPage from "@src/payment/PricingPage"
 }
 
-route CheckoutRoute { path: "/checkout", to: CheckoutPage }
-page CheckoutPage {
+route CheckoutResultRoute { path: "/checkout", to: CheckoutResultPage }
+page CheckoutResultPage {
   authRequired: true,
-  component: import Checkout from "@src/payment/CheckoutPage"
+  component: import CheckoutResultPage from "@src/payment/CheckoutResultPage"
 }
 
 query getCustomerPortalUrl {
@@ -221,8 +221,13 @@ page FileUploadPage {
   component: import FileUpload from "@src/file-upload/FileUploadPage"
 }
 
-action createFile {
-  fn: import { createFile } from "@src/file-upload/operations",
+action createFileUploadUrl {
+  fn: import { createFileUploadUrl } from "@src/file-upload/operations",
+  entities: [User, File]
+}
+
+action addFileToDb {
+  fn: import { addFileToDb } from "@src/file-upload/operations",
   entities: [User, File]
 }
 
@@ -233,6 +238,11 @@ query getAllFilesByUser {
 
 query getDownloadFileSignedURL {
   fn: import { getDownloadFileSignedURL } from "@src/file-upload/operations",
+  entities: [User, File]
+}
+
+action deleteFile {
+  fn: import { deleteFile } from "@src/file-upload/operations",
   entities: [User, File]
 }
 //#endregion
@@ -295,7 +305,7 @@ page NotFoundPage {
 //#endregion
 
 //#region Contact Form Messages
-// TODO: 
+// TODO:
 // add functionality to allow users to send messages to admin
 // and make them accessible via the admin dashboard
 route AdminMessagesRoute { path: "/admin/messages", to: AdminMessagesPage }

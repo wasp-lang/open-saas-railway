@@ -45,8 +45,7 @@ CREATE TABLE "File" (
     "userId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "type" TEXT NOT NULL,
-    "key" TEXT NOT NULL,
-    "uploadUrl" TEXT NOT NULL,
+    "s3Key" TEXT NOT NULL,
 
     CONSTRAINT "File_pkey" PRIMARY KEY ("id")
 );
