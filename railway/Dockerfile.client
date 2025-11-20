@@ -8,7 +8,7 @@ ENV WASP_TELEMETRY_CONTEXT="railway-open-saas"
 ARG WASP_TELEMETRY_USER_ID
 ENV WASP_TELEMETRY_USER_ID=$WASP_TELEMETRY_USER_ID
 
-RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.18.2
+RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.19.0
 
 ENV PATH="$PATH:/root/.local/bin"
 
