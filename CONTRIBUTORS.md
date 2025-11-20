@@ -72,11 +72,16 @@ Test the custom Docker files in `./railway` and update them if needed:
 
 ```shell
 # Client Dockerfile
-docker build -t railway-template-client --platform=linux/amd64 . --file ./railway/Dockerfile.client
+docker build -t railway-template-client \
+--platform=linux/amd64 . \
+--file ./railway/Dockerfile.client \
+--build-arg REACT_APP_API_URL=https://mock-api-url.com
 docker run railway-template-client
 
 # Server Dockerfile
-docker build -t railway-template-server --platform=linux/amd64 . --file ./railway/Dockerfile.server
+docker build -t railway-template-server \
+--platform=linux/amd64 . \
+--file ./railway/Dockerfile.server
 docker run railway-template-server
 ```
 
