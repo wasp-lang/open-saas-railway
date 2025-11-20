@@ -8,35 +8,16 @@ Start by removing the old template folders:
 rm -rf app e2e-tests blog
 ```
 
-Then recreate the template folders from the latest template version:
+Then recreate the template file structure from the latest template version:
 
 ```shell
-  wasp new saas-app -t saas && cp -r saas-app/{app,e2e-tests,blog} . cp saas-app/.gitignore . && rm -rf saas-app
+wasp new saas-app -t saas && \
+cp -r saas-app/{app,e2e-tests,blog} . && \
+cp saas-app/.gitignore . && \
+rm -rf saas-app
 ```
 
 ## Changes on top of template
-
-### Healthcheck
-
-Include the `/healthcheck` endpoint:
-
-```ts
-api healthCheck {
-  fn: import { healthCheck } from "@src/server/healthCheck",
-  httpRoute: (GET, "/health-check"),
-  auth: false
-}
-```
-
-And create the `healthCheck` function in `app/src/server/healthCheck.ts`:
-
-```ts
-import { type HealthCheck } from "wasp/server/api";
-
-export const healthCheck: HealthCheck = (_req, res, _context) => {
-  res.status(200).send("Server is healthy 😎");
-};
-```
 
 ### Email sender
 
@@ -52,16 +33,29 @@ MAILGUN_API_KEY=your-mailgun-key
 MAILGUN_DOMAIN=your-mailgun-domain
 ```
 
-## Test the app is okay
+## Re-add the initial migration
 
-Try running the app locally with:
+Start the database (in a separate terminal window):
+
+```bash
+cd app/
+wasp db start-dev
+```
+
+Run the migrations to generate the `package-lock.json` and `migrations` dir:
 
 ```bash
 cd app/
 cp .env.server.example .env.server
-wasp start db
-# Commit the migratons dir
 wasp db migrate-dev --name "init"
+```
+
+## Test that everything works
+
+Start the app:
+
+```bash
+# Make sure the databae is still running from the previous step.
 wasp start
 ```
 

@@ -314,11 +314,3 @@ page AdminMessagesPage {
   component: import AdminMessages from "@src/admin/dashboards/messages/MessagesPage"
 }
 //#endregion
-
-//#region Health Check
-api healthCheck {
-  fn: import { healthCheck } from "@src/server/healthCheck",
-  httpRoute: (GET, "/health-check"),
-  auth: false
-}
-//#endregion
