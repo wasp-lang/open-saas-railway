@@ -39,7 +39,7 @@ Start the database (in a separate terminal window):
 
 ```bash
 cd app/
-wasp db start-dev
+wasp db start
 ```
 
 Run the migrations to generate the `package-lock.json` and `migrations` dir:
@@ -85,4 +85,4 @@ docker build -t railway-template-server \
 docker run railway-template-server
 ```
 
-**Hint:** use the `.wasp/out/Dockerfile` to check if something changed related to how we build the server or generate the Prisma client.
+**Note:** check the `.wasp/out/Dockerfile` to check if something changed related to how we build the server or generate the Prisma client.
