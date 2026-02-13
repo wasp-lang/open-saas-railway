@@ -28,7 +28,7 @@ Change the email sender to `Mailgun`.
 Make sure `.env.server.example` has the Mailgun env vars:
 
 ```env
-# see our guide for setting up mailgun emailing: https://wasp.sh/docs/advanced/email#using-the-mailgun-provider
+# See our guide for setting up mailgun emailing: https://wasp.sh/docs/advanced/email#mailgun
 MAILGUN_API_KEY=your-mailgun-key
 MAILGUN_DOMAIN=your-mailgun-domain
 ```

@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router";
 import { routes } from "wasp/client/router";
 import { Toaster } from "../client/components/ui/toaster";
 import "./Main.css";
@@ -57,7 +57,7 @@ export default function App() {
             {shouldDisplayAppNavBar && (
               <NavBar navigationItems={navigationItems} />
             )}
-            <div className="mx-auto max-w-screen-2xl">
+            <div className="mx-auto max-w-(--breakpoint-2xl)">
               <Outlet />
             </div>
           </>

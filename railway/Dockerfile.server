@@ -1,16 +1,12 @@
 FROM --platform=linux/amd64 node:22-slim
 
-RUN apt update && apt install -y curl
-
 ENV WASP_TELEMETRY_CONTEXT="railway-open-saas"
 
 # This will set the public railway domain for the client as the user id
 ARG WASP_TELEMETRY_USER_ID
 ENV WASP_TELEMETRY_USER_ID=$WASP_TELEMETRY_USER_ID
 
-RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.20.0
-
-ENV PATH="$PATH:/root/.local/bin"
+RUN npm i -g @wasp.sh/wasp-cli@0.21.0
 
 WORKDIR /app
 
@@ -19,11 +15,11 @@ COPY ./app /app
 RUN wasp build
 
 # Install npm packages, resulting in node_modules/.
-RUN npm install && cd .wasp/build/server && npm install
-RUN cd .wasp/build/server && npx prisma generate --schema='../db/schema.prisma'
+RUN npm install && cd .wasp/out/server && npm install
+RUN cd .wasp/out/server && npx prisma generate --schema='../db/schema.prisma'
 # Building the server should come after Prisma generation.
-RUN cd .wasp/build/server && npm run bundle
+RUN cd .wasp/out/server && npm run bundle
 
-WORKDIR /app/.wasp/build/server
+WORKDIR /app/.wasp/out/server
 
 ENTRYPOINT ["npm", "run", "start-production"]

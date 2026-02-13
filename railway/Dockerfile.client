@@ -1,16 +1,12 @@
 FROM --platform=linux/amd64 node:22-slim AS builder
 
-RUN apt update && apt install -y curl
-
 ENV WASP_TELEMETRY_CONTEXT="railway-open-saas"
 
 # This will set the public railway domain for the client as the user id
 ARG WASP_TELEMETRY_USER_ID
 ENV WASP_TELEMETRY_USER_ID=$WASP_TELEMETRY_USER_ID
 
-RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v 0.20.0
-
-ENV PATH="$PATH:/root/.local/bin"
+RUN npm i -g @wasp.sh/wasp-cli@0.21.0
 
 WORKDIR /app
 
@@ -20,11 +16,11 @@ RUN wasp build
 
 ARG REACT_APP_API_URL
 
-RUN npm install && cd .wasp/build/web-app && npm install && REACT_APP_API_URL=$REACT_APP_API_URL npm run build
+RUN REACT_APP_API_URL=$REACT_APP_API_URL npx vite build
 
 FROM caddy
 
-COPY --from=builder /app/.wasp/build/web-app/build /usr/share/caddy
+COPY --from=builder /app/.wasp/out/web-app/build /usr/share/caddy
 
 COPY ./railway/Caddyfile /etc/caddy/Caddyfile
 
