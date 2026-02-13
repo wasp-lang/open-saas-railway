@@ -2,7 +2,7 @@
 
 https://github.com/user-attachments/assets/3856276b-23e9-455e-a564-b5f26f4f0e98
 
-You've decided to build a SaaS app with the Open SaaS x Railway template. Great choice! 
+You've decided to build a SaaS app with the Open SaaS x Railway template. Great choice!
 
 This template is:
 
@@ -10,7 +10,7 @@ This template is:
 2. comes with a ton of features out of the box
 3. is **pre-configured for instant Railway deployments**
 
-> [!WARNING]  
+> [!WARNING]
 > This is a special version of Open SaaS designed for instant Railway deployments. <br/>
 > **Do not** use Wasp's built-in deploy commands as it will interfere with your Railway setup.
 
@@ -33,16 +33,16 @@ If you haven't already deployed Open SaaS via the [Railway](https://railway.com/
 <img width="50%" alt="Screenshot 2025-08-19 at 14 13 31" src="https://github.com/user-attachments/assets/6b32c6e7-e72f-46f2-865a-6e54b4c3181d" />
 
 - Click on either the `Client` or `Server` service to access their configuration.
-- Click on the `Settings` tab. 
+- Click on the `Settings` tab.
 
 <img width="50%" alt="Screenshot 2025-08-19 at 14 16 17" src="https://github.com/user-attachments/assets/4970c08a-2277-40fa-ac10-fd1c666399ed" />
 
-- Under the `Upstream Repo` heading, click the `Eject` button. 
+- Under the `Upstream Repo` heading, click the `Eject` button.
 
 <img width="50%" alt="Screenshot 2025-08-19 at 14 26 50" src="https://github.com/user-attachments/assets/c6b2c467-ff10-466d-aba1-e0a5df004eb4" />
 
 - Select your GitHub account and click `Eject Service` to create a new repo in your account.
-- Go to your GitHub repositories, e.g.: `https://github.com/<your-user-name>/open-saas-railway` 
+- Go to your GitHub repositories, e.g.: `https://github.com/<your-user-name>/open-saas-railway`
 - Clone this repo to your local machine, e.g.: `git clone https://github.com/<your-user-name>/open-saas-railway.git`
 
 Now you can start building your SaaS app locally. When you push a new commit to `main`, Railway will automatically deploy your changes! 🚀
@@ -51,7 +51,7 @@ Now you can start building your SaaS app locally. When you push a new commit to 
 
 1️⃣ Install the Wasp CLI:
 ```bash
-curl -sSL https://get.wasp.sh/installer.sh | sh
+npm i -g @wasp.sh/wasp-cli@latest
 ```
 Read the [Installation Instructions](https://docs.opensaas.sh/start/getting-started/#install-wasp) for more details (prerequisites, installing on Windows).
 
@@ -63,12 +63,12 @@ Read the [Installation Instructions](https://docs.opensaas.sh/start/getting-star
 - Analytics,
 - Email Sending,
 - AI-assisted coding,
-- and more. 
+- and more.
 
-> [!WARNING]  
-> Remember that this version of Open SaaS is pre-configured for instant Railway deployments. 
+> [!WARNING]
+> Remember that this version of Open SaaS is pre-configured for instant Railway deployments.
 > Because of this, the deployment features via the Wasp CLI **should not** be used.
-> Just simply push to `main` on your instance's GitHub repo and Railway will automatically deploy your changes! 
+> Just simply push to `main` on your instance's GitHub repo and Railway will automatically deploy your changes!
 
 ## What's inside?
 
