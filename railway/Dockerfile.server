@@ -1,12 +1,14 @@
 FROM --platform=linux/amd64 node:22-slim
 
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 ENV WASP_TELEMETRY_CONTEXT="railway-open-saas"
 
 # This will set the public railway domain for the client as the user id
 ARG WASP_TELEMETRY_USER_ID
 ENV WASP_TELEMETRY_USER_ID=$WASP_TELEMETRY_USER_ID
 
-RUN npm i -g @wasp.sh/wasp-cli@0.21.0
+RUN npm i -g @wasp.sh/wasp-cli@0.22.0
 
 WORKDIR /app
 

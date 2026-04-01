@@ -1,3 +1,4 @@
+import { OrderStatus } from "@polar-sh/sdk/models/components/orderstatus.js";
 import {
   type CreateCheckoutSessionArgs,
   type FetchCustomerPortalUrlArgs,
@@ -13,6 +14,7 @@ import {
 } from "./checkoutUtils";
 import { polarClient } from "./polarClient";
 import { polarMiddlewareConfigFn, polarWebhook } from "./webhook";
+import { getPaymentProcessorPlanId } from "../paymentProcessorPlans";
 
 export const polarPaymentProcessor: PaymentProcessor = {
   id: "polar",
@@ -30,7 +32,7 @@ export const polarPaymentProcessor: PaymentProcessor = {
     );
 
     const checkoutSession = await createPolarCheckoutSession({
-      productId: paymentPlan.getPaymentProcessorPlanId(),
+      productId: getPaymentProcessorPlanId(paymentPlan),
       customerId: customer.id,
     });
 
@@ -62,4 +64,24 @@ export const polarPaymentProcessor: PaymentProcessor = {
   },
   webhook: polarWebhook,
   webhookMiddlewareConfigFn: polarMiddlewareConfigFn,
+  fetchTotalRevenue: async () => {
+    let totalRevenue = 0;
+
+    const result = await polarClient.orders.list({
+      limit: 100,
+    });
+
+    for await (const page of result) {
+      const orders = page.result.items || [];
+
+      for (const order of orders) {
+        if (order.status === OrderStatus.Paid && order.totalAmount > 0) {
+          totalRevenue += order.totalAmount;
+        }
+      }
+    }
+
+    // Revenue is in cents so we convert to dollars (or your main currency unit)
+    return totalRevenue / 100;
+  },
 };
