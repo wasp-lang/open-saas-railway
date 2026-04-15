@@ -64,8 +64,8 @@ wasp start
 Bump the version of Wasp in the `./railway` Dockerfiles:
 
 ```diff
--RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v old
-+RUN curl -sSL https://get.wasp.sh/installer.sh | sh -s -- -v new
+-RUN npm i -g @wasp.sh/wasp-cli@old
++RUN npm i -g @wasp.sh/wasp-cli@new
 ```
 
 Test the custom Docker files in `./railway` and update them if needed:

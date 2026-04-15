@@ -1,5 +1,5 @@
 :8080 {
 	root * /usr/share/caddy
 	file_server
-	try_files {path} /index.html
+	try_files {path} {path}/index.html /200.html
 }
