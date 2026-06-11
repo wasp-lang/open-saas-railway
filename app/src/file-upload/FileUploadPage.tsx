@@ -29,7 +29,7 @@ import { cn } from "../client/utils";
 import { uploadFileWithProgress, validateFile } from "./fileUploading";
 import { ALLOWED_FILE_TYPES } from "./validation";
 
-export default function FileUploadPage() {
+export function FileUploadPage() {
   const [fileKeyForS3, setFileKeyForS3] = useState<File["s3Key"]>("");
   const [uploadProgressPercent, setUploadProgressPercent] = useState<number>(0);
   const [fileToDelete, setFileToDelete] = useState<Pick<
@@ -51,7 +51,7 @@ export default function FileUploadPage() {
 
   useEffect(() => {
     allUserFiles.refetch();
-  }, []);
+  }, [allUserFiles]);
 
   useEffect(() => {
     if (fileKeyForS3.length > 0) {
@@ -75,7 +75,7 @@ export default function FileUploadPage() {
           setFileKeyForS3("");
         });
     }
-  }, [fileKeyForS3]);
+  }, [fileKeyForS3, refetchDownloadUrl]);
 
   const handleUpload = async (e: FormEvent<HTMLFormElement>) => {
     try {

@@ -1,8 +1,8 @@
 import { type AuthUser } from "wasp/auth";
-import Breadcrumb from "../../layout/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLayout";
+import { Breadcrumb } from "../../layout/Breadcrumb";
+import { DefaultLayout } from "../../layout/DefaultLayout";
 
-const Calendar = ({ user }: { user: AuthUser }) => {
+export function CalendarPage({ user }: { user: AuthUser }) {
   return (
     <DefaultLayout user={user}>
       <Breadcrumb pageName="Calendar" />
@@ -49,7 +49,7 @@ const Calendar = ({ user }: { user: AuthUser }) => {
                   <span className="group-hover:text-primary md:hidden">
                     More
                   </span>
-                  <div className="event z-99 border-primary bg-muted invisible absolute left-2 mb-1 flex w-[200%] flex-col rounded-sm border-l-[3px] px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 md:visible md:w-[190%] md:opacity-100">
+                  <div className="event border-primary bg-muted z-99 invisible absolute left-2 mb-1 flex w-[200%] flex-col rounded-sm border-l-[3px] px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 md:visible md:w-[190%] md:opacity-100">
                     <span className="event-name text-foreground text-sm font-semibold">
                       Redesign Website
                     </span>
@@ -144,7 +144,7 @@ const Calendar = ({ user }: { user: AuthUser }) => {
                   <span className="group-hover:text-primary md:hidden">
                     More
                   </span>
-                  <div className="event z-99 border-primary bg-muted invisible absolute left-2 mb-1 flex w-[300%] flex-col rounded-sm border-l-[3px] px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 md:visible md:w-[290%] md:opacity-100">
+                  <div className="event border-primary bg-muted z-99 invisible absolute left-2 mb-1 flex w-[300%] flex-col rounded-sm border-l-[3px] px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 md:visible md:w-[290%] md:opacity-100">
                     <span className="event-name text-foreground text-sm font-semibold">
                       App Design
                     </span>
@@ -194,6 +194,4 @@ const Calendar = ({ user }: { user: AuthUser }) => {
       </div>
     </DefaultLayout>
   );
-};
-
-export default Calendar;
+}

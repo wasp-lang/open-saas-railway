@@ -16,7 +16,7 @@ import { UserMenuItems } from "../../../user/UserMenuItems";
 import { useIsLandingPage } from "../../hooks/useIsLandingPage";
 import logo from "../../static/logo.webp";
 import { cn } from "../../utils";
-import DarkModeSwitcher from "../DarkModeSwitcher";
+import { DarkModeSwitcher } from "../DarkModeSwitcher";
 import { Announcement } from "./Announcement";
 
 export interface NavigationItem {
@@ -24,7 +24,7 @@ export interface NavigationItem {
   to: string;
 }
 
-export default function NavBar({
+export function NavBar({
   navigationItems,
 }: {
   navigationItems: NavigationItem[];
@@ -80,7 +80,7 @@ export default function NavBar({
                 <NavLogo isScrolled={isScrolled} />
                 <span
                   className={cn(
-                    "text-foreground leading-6 font-semibold transition-all duration-300",
+                    "text-foreground font-semibold leading-6 transition-all duration-300",
                     {
                       "ml-2 text-sm": !isScrolled,
                       "ml-2 text-xs": isScrolled,
@@ -119,7 +119,7 @@ function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
         <WaspRouterLink
           to={routes.LoginRoute.to}
           className={cn(
-            "ml-3 leading-6 font-semibold transition-all duration-300",
+            "ml-3 font-semibold leading-6 transition-all duration-300",
             {
               "text-sm": !isScrolled,
               "text-xs": isScrolled,
@@ -131,7 +131,7 @@ function NavBarDesktopUserDropdown({ isScrolled }: { isScrolled: boolean }) {
             <LogIn
               size={isScrolled ? "1rem" : "1.1rem"}
               className={cn("transition-all duration-300", {
-                "mt-[0.1rem] ml-1": !isScrolled,
+                "ml-1 mt-[0.1rem]": !isScrolled,
                 "ml-1": isScrolled,
               })}
             />
@@ -244,13 +244,15 @@ function renderNavigationItems(
   });
 }
 
-const NavLogo = ({ isScrolled }: { isScrolled: boolean }) => (
-  <img
-    className={cn("transition-all duration-500", {
-      "size-8": !isScrolled,
-      "size-7": isScrolled,
-    })}
-    src={logo}
-    alt="Your SaaS App"
-  />
-);
+function NavLogo({ isScrolled }: { isScrolled: boolean }) {
+  return (
+    <img
+      className={cn("transition-all duration-500", {
+        "size-8": !isScrolled,
+        "size-7": isScrolled,
+      })}
+      src={logo}
+      alt="Your SaaS App"
+    />
+  );
+}

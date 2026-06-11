@@ -2,11 +2,11 @@ import type { CookieConsentConfig } from "vanilla-cookieconsent";
 
 declare global {
   interface Window {
-    dataLayer: any;
+    dataLayer: unknown[];
   }
 }
 
-const getConfig = () => {
+export const getConfig = () => {
   // See https://cookieconsent.orestbida.com/reference/configuration-reference.html for configuration options.
   const config: CookieConsentConfig = {
     // Default configuration for the modal.
@@ -65,8 +65,13 @@ const getConfig = () => {
                   throw new Error("Google Analytics ID is missing");
                 }
                 window.dataLayer = window.dataLayer || [];
+                // Google's gtag.js initialization snippet relies on pushing the
+                // arguments object (not a real array) into dataLayer, so the
+                // gtag.js loader can replay queued events correctly.
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 function gtag(..._args: unknown[]) {
-                  (window.dataLayer as Array<any>).push(arguments);
+                  // eslint-disable-next-line prefer-rest-params
+                  window.dataLayer.push(arguments);
                 }
                 gtag("js", new Date());
                 gtag("config", GA_ANALYTICS_ID);
@@ -114,5 +119,3 @@ const getConfig = () => {
 
   return config;
 };
-
-export default getConfig;

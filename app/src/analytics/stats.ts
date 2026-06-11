@@ -1,5 +1,5 @@
 import { type DailyStats } from "wasp/entities";
-import { type DailyStatsJob } from "wasp/server/jobs";
+import { type CalculateDailyStatsJob } from "wasp/server/jobs";
 import {
   getDailyPageViews,
   getSources,
@@ -14,10 +14,10 @@ export type DailyStatsProps = {
   isLoading?: boolean;
 };
 
-export const calculateDailyStats: DailyStatsJob<never, void> = async (
-  _args,
-  context,
-) => {
+export const calculateDailyStatsJob: CalculateDailyStatsJob<
+  never,
+  void
+> = async (_args, context) => {
   const nowUTC = new Date(Date.now());
   nowUTC.setUTCHours(0, 0, 0, 0);
 
@@ -117,11 +117,11 @@ export const calculateDailyStats: DailyStatsJob<never, void> = async (
     }
 
     console.table({ dailyStats });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error calculating daily stats: ", error);
     await context.entities.Logs.create({
       data: {
-        message: `Error calculating daily stats: ${error?.message}`,
+        message: `Error calculating daily stats: ${error instanceof Error ? error.message : String(error)}`,
         level: "job-error",
       },
     });

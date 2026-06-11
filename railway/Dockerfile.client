@@ -6,11 +6,15 @@ ENV WASP_TELEMETRY_CONTEXT="railway-open-saas"
 ARG WASP_TELEMETRY_USER_ID
 ENV WASP_TELEMETRY_USER_ID=$WASP_TELEMETRY_USER_ID
 
-RUN npm i -g @wasp.sh/wasp-cli@0.23
+RUN npm i -g @wasp.sh/wasp-cli@0.24
 
 WORKDIR /app
 
 COPY ./app /app
+
+# Install npm packages first: building the main.wasp.ts spec needs the
+# project's dependencies (and their linux native bindings) to be present.
+RUN wasp install
 
 RUN wasp build
 
