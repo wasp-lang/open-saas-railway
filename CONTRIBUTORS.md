@@ -100,14 +100,15 @@ After merging the version update, test the published Railway template. Only edit
 5. Keep `Deploy to: New Project` and click `Deploy`.
 6. Wait for `Postgres`, `Client`, and `Server` to finish deploying. The template is healthy when `Client` and `Server` are online and their public URLs work.
 7. Open the `Client` service and use its public `client-production-*.up.railway.app` URL to verify the app loads.
-8. If a service fails, inspect its `Build Logs` and `Deploy Logs`. Common causes are missing variables, Dockerfile changes, or Wasp build output changes.
+8. Do not expect login or email flows to work during this smoke test because the template uses dummy email sender variables. It is enough for the client to load and the server to return `200`.
+9. If a service fails, inspect its `Build Logs` and `Deploy Logs`. Common causes are missing variables, Dockerfile changes, or Wasp build output changes.
 
 ### Update the template if needed
 
 1. Go back to `Templates` in the `Wasp` workspace.
 2. Open the three-dot menu on `Open SaaS` and click `Edit`.
 3. Select the affected service and open `Variables`. This is usually the `Server` service when a required env var is missing.
-4. Add or update missing variables. Keep template references such as `${{Postgres.DATABASE_URL}}` for values provided by Railway services.
+4. Add or update missing variables.
 5. Update service settings or Dockerfile-related config if the logs show the deployment no longer matches the latest Wasp build output.
 6. Click `Save`.
 7. Re-test the template from scratch with the steps above.
