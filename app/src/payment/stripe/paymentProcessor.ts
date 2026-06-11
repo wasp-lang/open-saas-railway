@@ -1,11 +1,12 @@
 import Stripe from "stripe";
-import { config } from "wasp/server";
 import { assertUnreachable } from "../../shared/utils";
+import { CUSTOMER_PORTAL_RETURN_URL } from "../paths";
 import type {
   CreateCheckoutSessionArgs,
   FetchCustomerPortalUrlArgs,
   PaymentProcessor,
 } from "../paymentProcessor";
+import { getPaymentProcessorPlanId } from "../paymentProcessorPlans";
 import type { PaymentPlanEffect } from "../plans";
 import {
   fetchUserPaymentProcessorUserId,
@@ -17,7 +18,6 @@ import {
 } from "./checkoutUtils";
 import { stripeClient } from "./stripeClient";
 import { stripeMiddlewareConfigFn, stripeWebhook } from "./webhook";
-import { getPaymentProcessorPlanId } from "../paymentProcessorPlans";
 
 export const stripePaymentProcessor: PaymentProcessor = {
   id: "stripe",
@@ -69,7 +69,7 @@ export const stripePaymentProcessor: PaymentProcessor = {
     const billingPortalSession =
       await stripeClient.billingPortal.sessions.create({
         customer: paymentProcessorUserId,
-        return_url: `${config.frontendUrl}/account`,
+        return_url: CUSTOMER_PORTAL_RETURN_URL,
       });
 
     return billingPortalSession.url;

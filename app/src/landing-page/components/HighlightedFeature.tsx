@@ -12,13 +12,13 @@ interface FeatureProps {
  * A component that highlights a feature with a description and a highlighted component.
  * Shows text description on one side, and whatever component you want to show on the other side to demonstrate the functionality.
  */
-const HighlightedFeature = ({
+export function HighlightedFeature({
   name,
   description,
   direction = "row",
   highlightedComponent,
   tilt,
-}: FeatureProps) => {
+}: FeatureProps) {
   const tiltToClass: Record<Required<FeatureProps>["tilt"], string> = {
     left: "rotate-1",
     right: "-rotate-1",
@@ -49,6 +49,4 @@ const HighlightedFeature = ({
       </div>
     </div>
   );
-};
-
-export default HighlightedFeature;
+}

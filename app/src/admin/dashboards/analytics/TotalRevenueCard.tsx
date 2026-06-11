@@ -8,11 +8,11 @@ import {
 } from "../../../client/components/ui/card";
 import { cn } from "../../../client/utils";
 
-const TotalRevenueCard = ({
+export function TotalRevenueCard({
   dailyStats,
   weeklyStats,
   isLoading,
-}: DailyStatsProps) => {
+}: DailyStatsProps) {
   const isDeltaPositive = useMemo(() => {
     if (!weeklyStats) return false;
     return weeklyStats[0].totalRevenue - weeklyStats[1]?.totalRevenue > 0;
@@ -33,12 +33,12 @@ const TotalRevenueCard = ({
         weeklyStats[1]?.totalRevenue) *
       100;
     return Math.floor(percentage);
-  }, [weeklyStats]);
+  }, [isLoading, weeklyStats]);
 
   return (
     <Card>
       <CardHeader>
-        <div className="h-11.5 w-11.5 bg-muted flex items-center justify-center rounded-full">
+        <div className="bg-muted h-11.5 w-11.5 flex items-center justify-center rounded-full">
           <ShoppingCart className="size-6" />
         </div>
       </CardHeader>
@@ -76,6 +76,4 @@ const TotalRevenueCard = ({
       </CardContent>
     </Card>
   );
-};
-
-export default TotalRevenueCard;
+}

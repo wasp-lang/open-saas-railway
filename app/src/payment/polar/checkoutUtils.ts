@@ -1,12 +1,12 @@
 import { Checkout } from "@polar-sh/sdk/models/components/checkout.js";
 import { Customer } from "@polar-sh/sdk/models/components/customer.js";
-import { config } from "wasp/server";
+import { CHECKOUT_SUCCESS_URL } from "../paths";
 import { polarClient } from "./polarClient";
 
 /**
  * Returns a Polar customer for the given User email, creating a customer if none exist.
- * 
- * NOTE: Polar enforces unique emails and `externalId`. 
+ *
+ * NOTE: Polar enforces unique emails and `externalId`.
  *       Additionally, `externalId` can't be changed once set.
  */
 export async function ensurePolarCustomer(
@@ -38,7 +38,7 @@ export function createPolarCheckoutSession({
 }: CreatePolarCheckoutSessionArgs): Promise<Checkout> {
   return polarClient.checkouts.create({
     products: [productId],
-    successUrl: `${config.frontendUrl}/checkout?status=success`,
+    successUrl: CHECKOUT_SUCCESS_URL,
     customerId,
   });
 }

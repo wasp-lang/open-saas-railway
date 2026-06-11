@@ -3,22 +3,23 @@ import { Outlet, useLocation } from "react-router";
 import { routes } from "wasp/client/router";
 import { Toaster } from "../client/components/ui/toaster";
 import "./Main.css";
-import NavBar from "./components/NavBar/NavBar";
+import { NavBar } from "./components/NavBar/NavBar";
 import {
   demoNavigationitems,
   marketingNavigationItems,
 } from "./components/NavBar/constants";
-import CookieConsentBanner from "./components/cookie-consent/Banner";
+import { CookieConsentBanner } from "./components/cookie-consent/Banner";
 
 /**
  * use this component to wrap all child components
  * this is useful for templates, themes, and context
  */
-export default function App() {
+export function App() {
   const location = useLocation();
   const isMarketingPage = useMemo(() => {
     return (
-      location.pathname === "/" || location.pathname.startsWith("/pricing")
+      location.pathname === routes.LandingPageRoute.to ||
+      location.pathname === routes.PricingPageRoute.to
     );
   }, [location]);
 
@@ -34,7 +35,7 @@ export default function App() {
   }, [location]);
 
   const isAdminDashboard = useMemo(() => {
-    return location.pathname.startsWith("/admin");
+    return location.pathname.startsWith(routes.AdminRoute.to);
   }, [location]);
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function App() {
             {shouldDisplayAppNavBar && (
               <NavBar navigationItems={navigationItems} />
             )}
-            <div className="mx-auto max-w-(--breakpoint-2xl)">
+            <div className="max-w-(--breakpoint-2xl) mx-auto">
               <Outlet />
             </div>
           </>

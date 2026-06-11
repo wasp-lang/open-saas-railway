@@ -1,15 +1,15 @@
 import { type AuthUser } from "wasp/auth";
 import { getDailyStats, useQuery } from "wasp/client/operations";
 import { cn } from "../../../client/utils";
-import DefaultLayout from "../../layout/DefaultLayout";
-import RevenueAndProfitChart from "./RevenueAndProfitChart";
-import SourcesTable from "./SourcesTable";
-import TotalPageViewsCard from "./TotalPageViewsCard";
-import TotalPayingUsersCard from "./TotalPayingUsersCard";
-import TotalRevenueCard from "./TotalRevenueCard";
-import TotalSignupsCard from "./TotalSignupsCard";
+import { DefaultLayout } from "../../layout/DefaultLayout";
+import { RevenueAndProfitChart } from "./RevenueAndProfitChart";
+import { SourcesTable } from "./SourcesTable";
+import { TotalPageViewsCard } from "./TotalPageViewsCard";
+import { TotalPayingUsersCard } from "./TotalPayingUsersCard";
+import { TotalRevenueCard } from "./TotalRevenueCard";
+import { TotalSignupsCard } from "./TotalSignupsCard";
 
-const Dashboard = ({ user }: { user: AuthUser }) => {
+export function AnalyticsDashboardPage({ user }: { user: AuthUser }) {
   const { data: stats, isLoading, error } = useQuery(getDailyStats);
 
   if (error) {
@@ -84,6 +84,4 @@ const Dashboard = ({ user }: { user: AuthUser }) => {
       </div>
     </DefaultLayout>
   );
-};
-
-export default Dashboard;
+}

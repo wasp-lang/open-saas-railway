@@ -8,7 +8,10 @@ import {
 } from "../../../client/components/ui/card";
 import { cn } from "../../../client/utils";
 
-const TotalPayingUsersCard = ({ dailyStats, isLoading }: DailyStatsProps) => {
+export function TotalPayingUsersCard({
+  dailyStats,
+  isLoading,
+}: DailyStatsProps) {
   const isDeltaPositive = useMemo(() => {
     return !!dailyStats?.paidUserDelta && dailyStats?.paidUserDelta > 0;
   }, [dailyStats]);
@@ -16,7 +19,7 @@ const TotalPayingUsersCard = ({ dailyStats, isLoading }: DailyStatsProps) => {
   return (
     <Card>
       <CardHeader>
-        <div className="h-11.5 w-11.5 bg-muted flex items-center justify-center rounded-full">
+        <div className="bg-muted h-11.5 w-11.5 flex items-center justify-center rounded-full">
           <ShoppingBag className="size-6" />
         </div>
       </CardHeader>
@@ -47,6 +50,4 @@ const TotalPayingUsersCard = ({ dailyStats, isLoading }: DailyStatsProps) => {
       </CardContent>
     </Card>
   );
-};
-
-export default TotalPayingUsersCard;
+}

@@ -7,6 +7,7 @@ import {
   getCustomerPortalUrl,
   useQuery,
 } from "wasp/client/operations";
+import { routes } from "wasp/client/router";
 import { Alert, AlertDescription } from "../client/components/ui/alert";
 import { Button } from "../client/components/ui/button";
 import {
@@ -53,7 +54,7 @@ export const paymentPlanCards: Record<PaymentPlanId, PaymentPlanCard> = {
   },
 };
 
-const PricingPage = () => {
+export function PricingPage() {
   const [isPaymentLoading, setIsPaymentLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -73,7 +74,7 @@ const PricingPage = () => {
 
   async function handleBuyNowClick(paymentPlanId: PaymentPlanId) {
     if (!user) {
-      navigate("/login");
+      navigate(routes.LoginRoute.to);
       return;
     }
     try {
@@ -99,7 +100,7 @@ const PricingPage = () => {
 
   const handleCustomerPortalClick = () => {
     if (!user) {
-      navigate("/login");
+      navigate(routes.LoginRoute.to);
       return;
     }
 
@@ -153,11 +154,11 @@ const PricingPage = () => {
             >
               {planId === bestDealPaymentPlanId && (
                 <div
-                  className="absolute top-0 right-0 -z-10 h-full w-full transform-gpu blur-3xl"
+                  className="absolute right-0 top-0 -z-10 h-full w-full transform-gpu blur-3xl"
                   aria-hidden="true"
                 >
                   <div
-                    className="from-primary/40 via-primary/20 to-primary/10 absolute h-full w-full bg-linear-to-br opacity-30"
+                    className="from-primary/40 via-primary/20 to-primary/10 bg-linear-to-br absolute h-full w-full opacity-30"
                     style={{
                       clipPath: "circle(670% at 50% 50%)",
                     }}
@@ -168,7 +169,7 @@ const PricingPage = () => {
                 <div className="flex items-center justify-between gap-x-4">
                   <CardTitle
                     id={planId}
-                    className="text-foreground text-lg leading-8 font-semibold"
+                    className="text-foreground text-lg font-semibold leading-8"
                   >
                     {paymentPlanCards[planId].name}
                   </CardTitle>
@@ -180,7 +181,7 @@ const PricingPage = () => {
                   <span className="text-foreground text-4xl font-bold tracking-tight">
                     {paymentPlanCards[planId].price}
                   </span>
-                  <span className="text-muted-foreground text-sm leading-6 font-semibold">
+                  <span className="text-muted-foreground text-sm font-semibold leading-6">
                     {paymentPlans[planId].effect.kind === "subscription" &&
                       "/month"}
                   </span>
@@ -223,7 +224,7 @@ const PricingPage = () => {
                     className="w-full"
                     disabled={isPaymentLoading}
                   >
-                    {!!user ? "Buy plan" : "Log in to buy plan"}
+                    {user ? "Buy plan" : "Log in to buy plan"}
                   </Button>
                 )}
               </CardFooter>
@@ -233,6 +234,4 @@ const PricingPage = () => {
       </div>
     </div>
   );
-};
-
-export default PricingPage;
+}
