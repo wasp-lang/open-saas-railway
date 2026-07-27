@@ -76,13 +76,13 @@ docker build -t railway-template-client \
 --platform=linux/amd64 . \
 --file ./railway/Dockerfile.client \
 --build-arg REACT_APP_API_URL=https://mock-api-url.com
-docker run railway-template-client
+docker run --rm -it railway-template-client
 
 # Server Dockerfile
 docker build -t railway-template-server \
 --platform=linux/amd64 . \
 --file ./railway/Dockerfile.server
-docker run railway-template-server
+docker run --rm -it railway-template-server
 ```
 
 **Note:** check the `.wasp/out/Dockerfile` to check if something changed related to how we build the server or generate the Prisma client.

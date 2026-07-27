@@ -8,7 +8,7 @@ ENV WASP_TELEMETRY_CONTEXT="railway-open-saas"
 ARG WASP_TELEMETRY_USER_ID
 ENV WASP_TELEMETRY_USER_ID=$WASP_TELEMETRY_USER_ID
 
-RUN npm i -g @wasp.sh/wasp-cli@0.24
+RUN npm i -g @wasp.sh/wasp-cli@0.25
 
 WORKDIR /app
 
