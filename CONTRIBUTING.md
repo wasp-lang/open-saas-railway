@@ -99,7 +99,7 @@ After merging the version update, test the published Railway template. Only edit
 4. Click `Deploy`.
 5. Wait for `Postgres`, `Client`, and `Server` to finish deploying. The template is healthy when `Client` and `Server` are online and their public URLs work.
 6. Open the `Client` service and use its public `client-production-*.up.railway.app` URL to verify the app loads.
-7. Do not expect login or email flows to work during this smoke test because the template uses dummy email sender variables. It is enough for the client to load and the server to return `200`.
+7. Do not expect login or email flows to work during this smoke test because the template uses dummy email sender variables. It is enough for the client to load and the server to return `200` from `/up`.
 8. If a service fails, inspect its `Build Logs` and `Deploy Logs`. Common causes are missing variables, Dockerfile changes, or Wasp build output changes.
 
 ### Update the template if needed
