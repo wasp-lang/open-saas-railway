@@ -2,7 +2,10 @@ import { app, page, route } from "@wasp.sh/spec";
 
 import { App } from "./src/client/App" with { type: "ref" };
 import { NotFoundPage } from "./src/client/components/NotFoundPage" with { type: "ref" };
-import { serverEnvValidationSchema } from "./src/env" with { type: "ref" };
+import {
+  clientEnvValidationSchema,
+  serverEnvValidationSchema,
+} from "./src/env" with { type: "ref" };
 import { LandingPage } from "./src/landing-page/LandingPage" with { type: "ref" };
 import { seedMockUsers } from "./src/server/scripts/dbSeeds" with { type: "ref" };
 
@@ -18,7 +21,7 @@ import { userSpec } from "./src/user/user.wasp";
 
 export default app({
   name: "OpenSaaS",
-  wasp: { version: "^0.25.0" },
+  wasp: { version: "^0.26.0" },
   title: "My Open SaaS App",
   head,
   auth: authConfig,
@@ -31,6 +34,7 @@ export default app({
   },
   client: {
     rootComponent: App,
+    envValidationSchema: clientEnvValidationSchema,
   },
   server: {
     envValidationSchema: serverEnvValidationSchema,

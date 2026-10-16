@@ -16,6 +16,16 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "ProcessedWebhookEvent" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "paymentProcessorEventId" TEXT NOT NULL,
+    "eventType" TEXT NOT NULL,
+
+    CONSTRAINT "ProcessedWebhookEvent_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "GptResponse" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -133,6 +143,9 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_paymentProcessorUserId_key" ON "User"("paymentProcessorUserId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ProcessedWebhookEvent_paymentProcessorEventId_key" ON "ProcessedWebhookEvent"("paymentProcessorEventId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "DailyStats_date_key" ON "DailyStats"("date");
